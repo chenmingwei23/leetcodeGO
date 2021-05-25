@@ -1,47 +1,28 @@
-package leetcodeGO;
-
-import java.util.*;
-
-public class longestPalindromicSubstring {
+	package leetcodeGO;
 	
-	public static boolean isPalindrome(String s) {
-		if (s.length() <= 1) {
-			return true;
+	import java.util.*;
+	
+	public class longestPalindromicSubstring {
+	
+	    public static String longestPalindrome(String s) {
+	    	String max = s;
+	    	int len = s.length();
+	    	boolean[][] isPalindrome= new boolean[len][len];
+	    	for (int i = 0; i<len;i++) {
+	    		char [] temp;
+	    		for (int j = len - 1; j >= i;j -- ) {
+	    			if (s.charAt(j)!=s.charAt(i)) {
+	    				continue;
+	    			}
+	    			temp = s.substring(i, j+1).toCharArray(); 
+	    		}
+	    	}
+	    	return max;
+	    }
+	    
+		public static void main(String args[]) {
+			String s = "ab";
+			System.out.println(longestPalindrome(s));
 		}
-		else if (s.charAt(0) != s.charAt(s.length() - 1)) {
-			return false;
-		} 
-		return isPalindrome(s.substring(1, s.length()-1));
 	}
 	
-    public static String longestPalindrome(String s) {
-    	String max = "";
-    	for (int i = 0; i < s.length(); i ++) {
-    		if(s.length() - i<=max.length()){
-    			return max;
-    		}
-    		for (int j = s.length() - 1; j>=i ; j--) {
-    			if( j - i <= max.length()){
-    				break;
-    			}
-    			if (s.charAt(i) == s.charAt(j)) {
-    				if (isPalindrome(s.substring(i, j+1))){
-    					if (j - i>=max.length()){
-    						System.out.println(s.substring(i, j+1));
-        					max = s.substring(i, j+1);
-        					break;
-    					}
-    				}
-    			}
-    		}
-    		
-    	}
-        return max;
-    }
-    
-	public static void main(String args[]) {
-		String s = "aba";
-		System.out.println(isPalindrome(s));
-	}
-}
-
