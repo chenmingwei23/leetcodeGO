@@ -21,19 +21,36 @@ import java.util.stream.Collectors;
 	    		int forward = i;
 	    		int backward = i;
 	    		ArrayList<Character> temp = new ArrayList<>();
-	    		System.out.print(i+" "+sequence[i]+" ");
+	    		//System.out.print(i+" "+sequence[i]+" ");
 	    		while (forward >0 && backward < 2*s.length() - 2) {
-	    			if (sequence[forward] != sequence[backward]) {
-	    				break;
-	    			}
 	    			forward --;
     				backward ++;
+	    			if (sequence[forward] != sequence[backward]) {
+	    				if (i == 4) {
+		    				//System.out.print("forward:"+forward + " backward:"+ backward +" ");
+		    			}
+	    				forward ++;
+	    				backward --;
+	    				break;
+	    			}
+	    			if (i == 4) {
+	    				//System.out.print("forward:"+forward + " backward:"+ backward +" ");
+	    			}
+	    			
 	    			
 	    		}
-	    		System.out.println(forward + " " + backward+" ");
-	    		if(backward - forward > maxLength) {
-	    			maxLength = backward - forward;
-	    			max = s.substring(forward/2, backward/2 + 1);
+	    		//System.out.println(forward + " " + backward+" ");
+	    		if(sequence[forward] != '#') {
+	    			if (s.substring(forward/2, backward/2 + 1).length() > max.length()) {
+		    			max = s.substring(forward/2, backward/2 + 1);
+		    			//System.out.println("forward:"+forward + " backward:"+ backward +" ");
+	    			}
+	    			
+	    		} else if (sequence[forward] == '#') {
+	    			if (s.substring((forward+1)/2, (backward-1)/2 + 1).length() > max.length()) {
+		    			max = s.substring((forward+1)/2, (backward-1)/2 + 1);
+		    			//System.out.println("forward:"+forward + " backward:"+ backward +" ");
+	    			}
 	    		}
 	    	}
 	    	
@@ -41,7 +58,7 @@ import java.util.stream.Collectors;
 	    }
 	    
 		public static void main(String args[]) {
-			String s = "babad";
+			String s = "cbbcdddd";
 			System.out.println(longestPalindrome(s));
 		}
 	}
