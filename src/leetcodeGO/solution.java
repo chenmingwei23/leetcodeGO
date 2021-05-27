@@ -6,13 +6,6 @@ public class solution {
 	public static boolean correction(String s) {
 		
 		// /YYYYMMDD/[a-z0-9]+/hhmmss
-		// 判断开头是否是/
-		
-		int pointer = 0;
-		if (s.charAt(pointer) != '/') {
-			return false;
-		}
-		pointer ++;
 		
 		String[] corpus = s.split("/");
 		if (corpus.length < 3) {
